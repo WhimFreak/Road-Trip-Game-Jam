@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhy0d2kxdv7fw"]
+
+[ext_resource type="Script" path="res://Vehicle Scenes/car.gd" id="1_c3au2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hlyld"]
+size = Vector3(1.505, 0.5, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulmym"]
+albedo_color = Color(0.295867, 0.295866, 0.295866, 1)
+metallic = 1.0
+metallic_specular = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ewjbc"]
+material = SubResource("StandardMaterial3D_ulmym")
+
+[node name="car" type="VehicleBody3D"]
+script = ExtResource("1_c3au2")
+
+[node name="body_you can edit it" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hlyld")
+
+[node name="wheels" type="Node3D" parent="."]
+
+[node name="Front_left" type="VehicleWheel3D" parent="wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+use_as_steering = true
+suspension_stiffness = 56.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wheels/Front_left"]
+transform = Transform3D(0.396, 0, 0, 0, 0.27, 0, 0, 0, 0.54, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ewjbc")
+
+[node name="Front_right" type="VehicleWheel3D" parent="wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+use_as_steering = true
+suspension_stiffness = 56.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wheels/Front_right"]
+transform = Transform3D(0.396, 0, 0, 0, 0.27, 0, 0, 0, 0.54, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ewjbc")
+
+[node name="Back_right" type="VehicleWheel3D" parent="wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+use_as_traction = true
+suspension_stiffness = 56.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wheels/Back_right"]
+transform = Transform3D(0.396, 0, 0, 0, 0.27, 0, 0, 0, 0.54, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ewjbc")
+
+[node name="Back_left" type="VehicleWheel3D" parent="wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+use_as_traction = true
+suspension_stiffness = 56.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wheels/Back_left"]
+transform = Transform3D(0.396, 0, 0, 0, 0.27, 0, 0, 0, 0.54, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_ewjbc")
