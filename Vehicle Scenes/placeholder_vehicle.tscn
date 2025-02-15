@@ -1,6 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bslajo7ub2s5r"]
+[gd_scene load_steps=6 format=3 uid="uid://cqkkm01g5x54x"]
 
-[ext_resource type="PackedScene" uid="uid://caksccop777ef" path="res://placeholder-vehicle.glb" id="1_58668"]
+[ext_resource type="PackedScene" uid="uid://dxt5dp3lxvdod" path="res://Vehicle Scenes/placeholder-vehicle.glb" id="1_58668"]
+
+[sub_resource type="GDScript" id="GDScript_18l5v"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_om6tf"]
 radius = 0.411013
@@ -15,6 +29,7 @@ height = 0.441542
 radius = 1.26744
 
 [node name="Placeholder-vehicle" instance=ExtResource("1_58668")]
+script = SubResource("GDScript_18l5v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(3.82137e-15, 8.74228e-08, 2, 2, -8.74228e-08, 0, 8.74228e-08, 2, -8.74228e-08, 0, 0.435923, -4.0255)
