@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://32eqth0vy00o"]
+[gd_scene load_steps=9 format=3 uid="uid://32eqth0vy00o"]
 
 [ext_resource type="PackedScene" uid="uid://dhy0d2kxdv7fw" path="res://Vehicle Scenes/car.tscn" id="1_a4t3p"]
+[ext_resource type="Script" path="res://Vehicle Scenes/camera.gd" id="2_xk68j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rdnui"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,10 +15,15 @@ background_mode = 2
 sky = SubResource("Sky_h7k14")
 tonemap_mode = 2
 
-[sub_resource type="BoxMesh" id="BoxMesh_idyqa"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc82a"]
+albedo_color = Color(0.995766, 1, 0.318056, 1)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3g3mw"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+[sub_resource type="BoxMesh" id="BoxMesh_idyqa"]
+material = SubResource("StandardMaterial3D_tc82a")
+size = Vector3(200, 400, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yroqk"]
+data = PackedVector3Array(-100, 200, 100, 100, 200, 100, -100, -200, 100, 100, 200, 100, 100, -200, 100, -100, -200, 100, 100, 200, -100, -100, 200, -100, 100, -200, -100, -100, 200, -100, -100, -200, -100, 100, -200, -100, 100, 200, 100, 100, 200, -100, 100, -200, 100, 100, 200, -100, 100, -200, -100, 100, -200, 100, -100, 200, -100, -100, 200, 100, -100, -200, -100, -100, 200, 100, -100, -200, 100, -100, -200, -100, 100, 200, 100, -100, 200, 100, 100, 200, -100, -100, 200, 100, -100, 200, -100, 100, 200, -100, -100, -200, 100, 100, -200, 100, -100, -200, -100, 100, -200, 100, 100, -200, -100, -100, -200, -100)
 
 [node name="Main" type="Node3D"]
 
@@ -30,13 +36,80 @@ shadow_enabled = true
 directional_shadow_mode = 1
 
 [node name="car" parent="." instance=ExtResource("1_a4t3p")]
-transform = Transform3D(0.950372, 0, 0, 0, 0.950372, 0, 0, 0, 0.950372, 40.0345, 8.18877, 3.78073)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 40.0345, 8.18877, 3.78073)
 
 [node name="ground" type="MeshInstance3D" parent="."]
-transform = Transform3D(192.058, 8.0099e-09, 0, -2.38419e-07, 0.487535, 4.76837e-07, 3.8147e-06, -3.20396e-09, -146.093, 0, 0, 0)
+transform = Transform3D(-1, 2.62268e-10, -1.51152e-08, -8.74228e-08, -0.003, 5.00111e-09, -1.98622e-08, 1.97153e-11, 0.761, 0, 0, 0)
 mesh = SubResource("BoxMesh_idyqa")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ground"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_3g3mw")
+shape = SubResource("ConcavePolygonShape3D_yroqk")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 24, -75.5)
+use_collision = true
+size = Vector3(202, 50, 2)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 24, 75.5)
+use_collision = true
+size = Vector3(203, 50, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 24, 0)
+use_collision = true
+size = Vector3(2, 50, 149)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 12.5, 43.5)
+use_collision = true
+size = Vector3(24, 27, 25)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 9, 43.5)
+use_collision = true
+size = Vector3(18, 20, 25)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5, 18, 43.5)
+use_collision = true
+size = Vector3(29, 36, 25)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.5, 27.1987, -0.749451)
+use_collision = true
+size = Vector3(11, 53.6821, 58.5011)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D/CSGBox3D8"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.9091, 0.619476, -1.54496)
+operation = 2
+use_collision = true
+radius = 13.2271
+height = 14.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.198627, -13.2137, -1.56612)
+operation = 2
+size = Vector3(13.7845, 27.6663, 26.905)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 24, 0)
+use_collision = true
+size = Vector3(2, 50, 149)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 8, -38)
+use_collision = true
+radius = 2.766
+height = 16.0
+
+[node name="Camera" type="Node3D" parent="."]
+script = ExtResource("2_xk68j")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 10, 10, 0)
