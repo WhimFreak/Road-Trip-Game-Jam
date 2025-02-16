@@ -18,7 +18,7 @@ height = 0.25
 [sub_resource type="BoxShape3D" id="BoxShape3D_34npo"]
 size = Vector3(1, 1, 9)
 
-[node name="car" type="VehicleBody3D"]
+[node name="car" type="VehicleBody3D" groups=["vehicle"]]
 script = ExtResource("1_c3au2")
 
 [node name="Front_left" type="VehicleWheel3D" parent="."]
@@ -71,9 +71,6 @@ mesh = SubResource("CylinderMesh_ugspn")
 
 [node name="placeholder-vehicle" parent="." instance=ExtResource("2_k4dhr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 7, -13)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
