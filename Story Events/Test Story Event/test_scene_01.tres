@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Scene" load_steps=3 format=3 uid="uid://dx57b1tuwjwp1"]
+
+[ext_resource type="Texture2D" uid="uid://cngjsmmvwtyek" path="res://Story Events/Assets/epic_background.png" id="1_v2bw3"]
+[ext_resource type="Script" path="res://Story Events/scene.gd" id="2_sqldo"]
+
+[resource]
+script = ExtResource("2_sqldo")
+background = ExtResource("1_v2bw3")
+text = "This is the opening line"

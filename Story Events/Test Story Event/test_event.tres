@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="StoryEvent" load_steps=7 format=3 uid="uid://c15r6en7vqi5a"]
+
+[ext_resource type="Script" path="res://Story Events/scene.gd" id="1_u21wr"]
+[ext_resource type="Resource" uid="uid://dx57b1tuwjwp1" path="res://Story Events/Test Story Event/test_scene_01.tres" id="2_w6j0g"]
+[ext_resource type="Resource" uid="uid://carpnayucqur0" path="res://Story Events/Test Story Event/test_scene_02.tres" id="3_6vsst"]
+[ext_resource type="Script" path="res://Story Events/story_event.gd" id="3_ypyj6"]
+[ext_resource type="Resource" uid="uid://63dtdwq5pjys" path="res://Story Events/Test Story Event/test_scene_03.tres" id="4_6q4vg"]
+[ext_resource type="Resource" uid="uid://be2g0vutbolvb" path="res://Story Events/Test Story Event/test_scene_04.tres" id="5_8riud"]
+
+[resource]
+script = ExtResource("3_ypyj6")
+scenes = Array[ExtResource("1_u21wr")]([ExtResource("2_w6j0g"), ExtResource("3_6vsst"), ExtResource("4_6q4vg"), ExtResource("5_8riud")])

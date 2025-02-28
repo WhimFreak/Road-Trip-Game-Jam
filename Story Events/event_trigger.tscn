@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdrnnpgmumbyn"]
+
+[ext_resource type="Script" path="res://Story Events/event_trigger.gd" id="1_g0tjc"]
+[ext_resource type="Resource" uid="uid://c15r6en7vqi5a" path="res://Story Events/Test Story Event/test_event.tres" id="2_385py"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu0r3"]
+diffuse_mode = 3
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0.341176, 1, 1, 1)
+emission_energy_multiplier = 1.4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0eipk"]
+material = SubResource("StandardMaterial3D_tu0r3")
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xmw2u"]
+radius = 13.0
+height = 58.943
+
+[node name="EventTrigger" type="Area3D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_g0tjc")
+story_event = ExtResource("2_385py")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_0eipk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_xmw2u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://32eqth0vy00o"]
+[gd_scene load_steps=12 format=3 uid="uid://32eqth0vy00o"]
 
+[ext_resource type="Script" path="res://Main Scenes/main.gd" id="1_36mgc"]
 [ext_resource type="PackedScene" uid="uid://dhy0d2kxdv7fw" path="res://Vehicle Scenes/car.tscn" id="1_a4t3p"]
 [ext_resource type="Script" path="res://Vehicle Scenes/camera.gd" id="2_xk68j"]
+[ext_resource type="PackedScene" uid="uid://bdrnnpgmumbyn" path="res://Story Events/event_trigger.tscn" id="3_p4rxs"]
+[ext_resource type="Script" path="res://System Managers/interaction_manager.gd" id="4_o38t0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rdnui"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,6 +17,9 @@ sky_material = SubResource("ProceduralSkyMaterial_rdnui")
 background_mode = 2
 sky = SubResource("Sky_h7k14")
 tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.15
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc82a"]
 albedo_color = Color(0.995766, 1, 0.318056, 1)
@@ -26,6 +32,7 @@ size = Vector3(200, 400, 200)
 data = PackedVector3Array(-100, 200, 100, 100, 200, 100, -100, -200, 100, 100, 200, 100, 100, -200, 100, -100, -200, 100, 100, 200, -100, -100, 200, -100, 100, -200, -100, -100, 200, -100, -100, -200, -100, 100, -200, -100, 100, 200, 100, 100, 200, -100, 100, -200, 100, 100, 200, -100, 100, -200, -100, 100, -200, 100, -100, 200, -100, -100, 200, 100, -100, -200, -100, -100, 200, 100, -100, -200, 100, -100, -200, -100, 100, 200, 100, -100, 200, 100, 100, 200, -100, -100, 200, 100, -100, 200, -100, 100, 200, -100, -100, -200, 100, 100, -200, 100, -100, -200, -100, 100, -200, 100, 100, -200, -100, -100, -200, -100)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_36mgc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cstvw")
@@ -113,3 +120,27 @@ script = ExtResource("2_xk68j")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 10, 10, 0)
+
+[node name="EventTrigger" parent="." instance=ExtResource("3_p4rxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.71813, 10.1639, -19.982)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InteractionManager" type="Node3D" parent="CanvasLayer" groups=["interaction_manager"]]
+script = ExtResource("4_o38t0")
+
+[node name="InteractLabel" type="Label" parent="CanvasLayer/InteractionManager"]
+visible = false
+offset_top = 570.0
+offset_right = 1152.0
+offset_bottom = 636.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Press [E] to interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadeTransition" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_right = 1152.0
+offset_bottom = 648.0

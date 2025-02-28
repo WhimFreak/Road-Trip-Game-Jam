@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Scene" load_steps=3 format=3 uid="uid://63dtdwq5pjys"]
+
+[ext_resource type="Texture2D" uid="uid://cj7qs5b0r2jm" path="res://icon.svg" id="1_qgk3w"]
+[ext_resource type="Script" path="res://Story Events/scene.gd" id="2_7siv2"]
+
+[resource]
+script = ExtResource("2_7siv2")
+background = ExtResource("1_qgk3w")
+text = "Godot jumpscare"

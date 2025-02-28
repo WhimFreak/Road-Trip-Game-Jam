@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://nfc7tx5ojpbo"]
+
+[ext_resource type="Texture2D" uid="uid://cngjsmmvwtyek" path="res://Story Events/Assets/epic_background.png" id="1_2x6hv"]
+[ext_resource type="Script" path="res://Main Scenes/event.gd" id="1_y4kbl"]
+
+[node name="Event" type="Node2D"]
+script = ExtResource("1_y4kbl")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1149.0
+offset_bottom = 646.0
+texture = ExtResource("1_2x6hv")
+expand_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextPanel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 120)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="Text" type="Label" parent="CanvasLayer/TextPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = -9.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "..."
+
+[node name="FadeTransition" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1149.0
+offset_bottom = 646.0

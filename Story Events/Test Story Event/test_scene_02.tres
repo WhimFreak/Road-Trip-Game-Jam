@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Scene" load_steps=3 format=3 uid="uid://carpnayucqur0"]
+
+[ext_resource type="Texture2D" uid="uid://cngjsmmvwtyek" path="res://Story Events/Assets/epic_background.png" id="1_3wvo3"]
+[ext_resource type="Script" path="res://Story Events/scene.gd" id="1_5i860"]
+
+[resource]
+script = ExtResource("1_5i860")
+background = ExtResource("1_3wvo3")
+text = "This is the line that follows"
