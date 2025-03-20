@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://32eqth0vy00o"]
+[gd_scene load_steps=11 format=3 uid="uid://32eqth0vy00o"]
 
 [ext_resource type="PackedScene" uid="uid://dhy0d2kxdv7fw" path="res://Vehicle Scenes/car.tscn" id="1_a4t3p"]
+[ext_resource type="Script" path="res://System Managers/interaction_manager.gd" id="1_up5hy"]
 [ext_resource type="Script" path="res://Vehicle Scenes/camera.gd" id="2_xk68j"]
+[ext_resource type="PackedScene" uid="uid://cqhb2wc6oeuxv" path="res://Characters/test_character.tscn" id="4_es0of"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rdnui"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -26,6 +28,9 @@ size = Vector3(200, 400, 200)
 data = PackedVector3Array(-100, 200, 100, 100, 200, 100, -100, -200, 100, 100, 200, 100, 100, -200, 100, -100, -200, 100, 100, 200, -100, -100, 200, -100, 100, -200, -100, -100, 200, -100, -100, -200, -100, 100, -200, -100, 100, 200, 100, 100, 200, -100, 100, -200, 100, 100, 200, -100, 100, -200, -100, 100, -200, 100, -100, 200, -100, -100, 200, 100, -100, -200, -100, -100, 200, 100, -100, -200, 100, -100, -200, -100, 100, 200, 100, -100, 200, 100, 100, 200, -100, -100, 200, 100, -100, 200, -100, 100, 200, -100, -100, -200, 100, 100, -200, 100, -100, -200, -100, 100, -200, 100, 100, -200, -100, -100, -200, -100)
 
 [node name="Main" type="Node3D"]
+
+[node name="InteractionManager" type="Node" parent="." groups=["interaction_manager"]]
+script = ExtResource("1_up5hy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cstvw")
@@ -109,7 +114,28 @@ radius = 2.766
 height = 16.0
 
 [node name="Camera" type="Node3D" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_xk68j")
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
 transform = Transform3D(-4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 10, 10, 0)
+
+[node name="TestCharacter" parent="." instance=ExtResource("4_es0of")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5138, 7.5712, -4.04722)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InteractLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Press [E] to interact"
+horizontal_alignment = 1
+vertical_alignment = 1

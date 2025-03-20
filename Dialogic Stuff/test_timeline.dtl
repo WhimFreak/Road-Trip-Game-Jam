@@ -1,0 +1,13 @@
+test_character: Oh, a player!
+test_character: Haha, this is so cool. I'm in a game! I can't wait for this to be released so I can meet more of you guys.
+- But you're just a placeholder
+	test_character: ...
+	[wait time="1.0" hide_text="false"]
+test_character: So I'm not gonna be in the final game?
+- Nope. You don't even have a model.
+	test_character: Damn, I was wondering why I'm just this weird bean thing.
+	test_character: Well, it's nice to meet you, I guess.
+- Ehh.. maybe.
+	test_character: Yeah..
+	test_character: Yeah, yeah!
+	test_character: I'm sure I'll be there! Haha, I'm so excited!
