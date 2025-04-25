@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bga6th6j7jg2d"
+path="res://.godot/imported/Tropical Adventure.mp3-2f70df36c2363a8d2e986308f5f921b4.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Tropical Adventure.mp3"
+dest_files=["res://.godot/imported/Tropical Adventure.mp3-2f70df36c2363a8d2e986308f5f921b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
