@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://olelq8cau2e4"]
+
+[ext_resource type="PackedScene" uid="uid://be7a433e0h67d" path="res://Models/obstacle-3.glb" id="1_sbkkm"]
+
+[node name="obstacle-3" instance=ExtResource("1_sbkkm")]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dggvjr4aua1qa"]
+
+[ext_resource type="Script" path="res://Scripts/nav_and_spawner.gd" id="1_soyij"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_36oea"]
+vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_706cc"]
+size = Vector3(100, 1, 100)
+
+[node name="NavAndSpawner" type="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100006, 0, -6.10308)
+navigation_mesh = SubResource("NavigationMesh_36oea")
+script = ExtResource("1_soyij")
+max_distance_from_player = 110.0
+min_distance_from_player = 50.0
+min_distance_before_despawning = 120.0
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="NavMesh" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavMesh"]
+shape = SubResource("BoxShape3D_706cc")
+
+[node name="Obstacles" type="Node" parent="."]
+
+[connection signal="bake_finished" from="." to="." method="_on_bake_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

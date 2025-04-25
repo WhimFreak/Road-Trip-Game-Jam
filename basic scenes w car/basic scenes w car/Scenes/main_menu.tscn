@@ -1,0 +1,169 @@
+[gd_scene load_steps=13 format=3 uid="uid://hoj3r14w5hmo"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_12j8x"]
+[ext_resource type="Script" path="res://Scripts/scene_transitioner.gd" id="2_2il5b"]
+[ext_resource type="FontFile" uid="uid://ckgyg3y80u5vp" path="res://Font/SourGummy-Black.ttf" id="3_7he8a"]
+[ext_resource type="Texture2D" uid="uid://bnm6ldacah3pb" path="res://Images/button-normal.png" id="4_yym5u"]
+[ext_resource type="Texture2D" uid="uid://b8wrnsfsybfdb" path="res://Images/button-hover.png" id="5_gg0l5"]
+[ext_resource type="Texture2D" uid="uid://b6ec84mnihd1r" path="res://Images/button-pressed.png" id="5_k1efu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0yb58"]
+texture = ExtResource("5_gg0l5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3xv2e"]
+texture = ExtResource("5_k1efu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yqfpr"]
+texture = ExtResource("4_yym5u")
+
+[sub_resource type="Animation" id="Animation_byovw"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scene_change_color:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_smws0"]
+resource_name = "fade_in_and_out"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scene_change_color:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.533333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"new_scene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uadx3"]
+_data = {
+"RESET": SubResource("Animation_byovw"),
+"fade_in_and_out": SubResource("Animation_smws0")
+}
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_12j8x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -328.0
+offset_right = -576.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="background" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(3.65794e-06, 0.632251, 0.641174, 0.356863)
+
+[node name="labels v containers" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/labels v containers"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_7he8a")
+theme_override_font_sizes/font_size = 50
+text = "Name of the game"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/labels v containers"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/labels v containers/MarginContainer"]
+layout_mode = 2
+
+[node name="new game btn" type="Button" parent="MarginContainer/labels v containers/MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.858876, 0.737065, 0.579325, 1)
+theme_override_colors/font_outline_color = Color(0.199832, 0.148475, 0.0790478, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("3_7he8a")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxTexture_0yb58")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3xv2e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yqfpr")
+text = "New game"
+
+[node name="options btn" type="Button" parent="MarginContainer/labels v containers/MarginContainer/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.858876, 0.737065, 0.579325, 1)
+theme_override_colors/font_outline_color = Color(0.199832, 0.148475, 0.0790478, 1)
+theme_override_constants/outline_size = 5
+theme_override_constants/h_separation = 10
+theme_override_fonts/font = ExtResource("3_7he8a")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxTexture_0yb58")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3xv2e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yqfpr")
+text = "Options"
+
+[node name="scene_transitioner" type="CanvasLayer" parent="."]
+script = ExtResource("2_2il5b")
+
+[node name="scene_change_color" type="ColorRect" parent="scene_transitioner"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.151473, 0.0286967, 0.150671, 1)
+
+[node name="scene_change_player" type="AnimationPlayer" parent="scene_transitioner"]
+libraries = {
+"": SubResource("AnimationLibrary_uadx3")
+}
+
+[connection signal="pressed" from="MarginContainer/labels v containers/MarginContainer/VBoxContainer/new game btn" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/labels v containers/MarginContainer/VBoxContainer/options btn" to="." method="_on_button_pressed"]

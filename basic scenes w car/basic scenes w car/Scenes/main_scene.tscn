@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://yu7bhoae0him"]
+
+[ext_resource type="PackedScene" uid="uid://doc6jswek2qjd" path="res://Models/car.glb" id="1_jl8g6"]
+[ext_resource type="Script" path="res://Scripts/main_scene.gd" id="1_m3s4a"]
+[ext_resource type="Script" path="res://Scripts/camera_3d.gd" id="1_q15h6"]
+[ext_resource type="PackedScene" uid="uid://dhyb0x0u3obu3" path="res://Scenes/fish.tscn" id="2_43pt1"]
+[ext_resource type="PackedScene" uid="uid://dggvjr4aua1qa" path="res://Scenes/nav_and_spawner.tscn" id="4_xigty"]
+[ext_resource type="FontFile" uid="uid://ckgyg3y80u5vp" path="res://Font/SourGummy-Black.ttf" id="5_hi7br"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_knll1"]
+sky_top_color = Color(0.587389, 0.748317, 0.868079, 1)
+sky_horizon_color = Color(0.712249, 0.843625, 0.929474, 1)
+ground_bottom_color = Color(0.261608, 0.626182, 0.849817, 1)
+ground_horizon_color = Color(0.712249, 0.843625, 0.929474, 1)
+
+[sub_resource type="Sky" id="Sky_3o03j"]
+sky_material = SubResource("ProceduralSkyMaterial_knll1")
+
+[sub_resource type="Environment" id="Environment_up2nc"]
+background_mode = 2
+sky = SubResource("Sky_3o03j")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 3.28
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ochvs"]
+vertices = PackedVector3Array(-49.5, 1, -49.5, -49.5, 1, 49.5, 49.5, 1, 49.5, 49.5, 1, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_m3s4a")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_up2nc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0645642, -0.568865, -0.819893, -0.986906, -0.0852957, 0.136897, -0.147809, 0.817996, -0.555909, -12.4522, 27.6074, 0)
+shadow_enabled = true
+
+[node name="car2" parent="." groups=["car"] instance=ExtResource("1_jl8g6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.928406, 0, -0.617719)
+
+[node name="Camera3D" type="Camera3D" parent="car2"]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 54.475, 0)
+script = ExtResource("1_q15h6")
+
+[node name="Fish" parent="." groups=["fish"] instance=ExtResource("2_43pt1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.142, 0, -1.459)
+
+[node name="NavAndSpawner" parent="." instance=ExtResource("4_xigty")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.103)
+navigation_mesh = SubResource("NavigationMesh_ochvs")
+max_distance_from_player = 70.0
+min_distance_from_other_obstacles = 16.0
+min_distance_before_despawning = 140.0
+obstacles_per_spawn = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 139.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_hi7br")
+theme_override_font_sizes/font_size = 45
+text = "30.00"
+horizontal_alignment = 1
+vertical_alignment = 1
